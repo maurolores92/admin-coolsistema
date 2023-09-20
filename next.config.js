@@ -1,4 +1,21 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path')
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} */
+
+// Remove this if you're not using Fullcalendar features
+
+module.exports = {
+  output: 'export',
+  trailingSlash: true,
+  reactStrictMode: false,
+  images: {unoptimized: true,},
+  webpack: config => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      apexcharts: path.resolve(__dirname, './node_modules/apexcharts-clevision')
+    }
+
+    return config
+  }
+}
